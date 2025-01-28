@@ -1,49 +1,42 @@
-const operand = 12;
-const operand2 = 45;
+const target = document.getElementById('target');
+const timerDisplay = document.getElementById('timer');
+const scoreDisplay = document.getElementById('score');
+let score = 0;
+let timeLeft = 10;
+let timer;
 
-let result = operand + operand2;
-
-console.log("resultat de" + operand + "+" + operand2 + "=" + result);
-
-
-let day;
-switch (new Date().getDay()) {
-  case 0:
-    day = "Dimanche";
-    break;
-  case 1:
-    day = "Lundi";
-    break;
-  case 2:
-     day = "Mardi";
-    break;
-  case 3:
-    day = "Mercredi";
-    break;
-  case 4:
-    day = "Jeudi";
-    break;
-  case 5:
-    day = "Vendredi";
-    break;
-  case 6:
-    day = "Samedi";
+function moveButton() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+    target.style.position = 'absolute';
+    target.style.left = `${x}px`;
+    target.style.top = `${y}px`;
 }
-console.log("Aujourd'hui nous sommes " + day);
 
+function updateScore() {
+    score++;
+    scoreDisplay.textContent = score;
+    moveButton();
+}
 
-let aPerson = { 
-	name: 'Jean',
-	age: 35,
-	gender: 'masculin',
-	interest: ['musique', 'Jeux videos'],
-};
+function startGame() {
+    score = 0;
+    timeLeft = 10;
+    scoreDisplay.textContent = score;
+    timerDisplay.textContent = timeLeft;
+    moveButton();
 
-// on peut également déclarer et initialiser un objet de la façon suivante :
+    timer = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
 
-aPerson.sayHello = function() {console.log('Bonjour ! Je suis ' + this.name + '.'); };
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            alert(`Temps écoulé! Votre score est de ${score}.`);
+            target.style.display = 'none';
+        }
+    }, 1000);
+}
 
-aPerson.sayHello();
-aPerson.sayHello = function() {console.log('Bonjour ! Je suis ' + this.name + '.'); };
-
-aPerson.sayHello();
+target.addEventListener('click', updateScore);
+startGame();
