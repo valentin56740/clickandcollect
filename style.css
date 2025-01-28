@@ -5,15 +5,74 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background-image: url('images/background1.jpg'); /* Image par défaut */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: changeBackground 6s infinite; /* Animation de 6 secondes (3 images × 2 secondes) */
+}
+
+@keyframes changeBackground {
+    0% {
+        background-image: url('images/siphano.jpg');
+        opacity: 1;
+    }
+    33% {
+        background-image: url('images/tibo.jpg');
+        opacity: 1;
+    }
+    66% {
+        background-image: url('images/bassem.jpg');
+        opacity: 1;
+    }
+    100% {
+        background-image: url('images/tout.jpg');
+        opacity: 1;
+    }
+    100% {
+        background-image: url('images/full.png');
+        opacity: 1;
+    }
 }
 
 .game-container {
     text-align: center;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour le contenu */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #007bff;
+    margin-bottom: 10px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.score-container {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.score-container p {
+    margin: 5px 0;
+    font-size: 1.2em;
 }
 
 #target {
